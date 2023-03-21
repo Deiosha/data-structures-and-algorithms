@@ -1,23 +1,20 @@
-# Data Structures and Algorithms
+Code Challenge: Class 01
+Write a function called reverseArray which takes an array as an argument. Without utilizing any of the built-in methods available to your language, return an array with elements in reversed order.
 
-See [setup instructions](https://codefellows.github.io/setup-guide/code-301/3-code-challenges), in the Code 301 Setup Guide.
+## Whiteboard Process
+<!-- Embedded whiteboard image -->
 
-## Repository Quick Tour and Usage
+## Approach & Efficiency
+<!-- What approach did you take? Why? What is the Big O space/time for this approach? -->
+I create a method that the order of integers and reverse them. enter the integers in the parentheses. Use python built-in method “reverse” print out the reverse list
 
-### 301 Code Challenges
+## Solution
+def test_exists(): 
+assert reverseArray([1, 2, 3, 4, 5, 6])
+# reverseArray = [1, 2, 3, 4, 5, 6]
+# reverse the order of list elements
+# reverseArray.reverse()
+ print('Reversed List:', reverseArray)
 
-Under the `javascript` folder, at the top level, is a sub-folder called `code-challenges`
-
-Each day, you'll add one new file to this folder to do your work for the day's assigned code challenge
-
-If you have not already done so, run `npm install` from within this folder to setup your system to be able to run tests using `Jest`
-
-To run your tests
-
-- Change to the `javascript` folder
-- run `npm test` to run all of the tests
-- run `npm test ##` to only run tests for challenge ## (i.e. 01)
-
-### 401 Data Structures, Code Challenges
-
-- Please follow the instructions specific to your 401 language, which can be found in the directory below, matching your course.
+INPUT: integers in an array
+OUTPUT: the integers in the array in reverse
