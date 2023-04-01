@@ -75,3 +75,37 @@ def test_includes_false():
     assert not linked_list.includes("cucumber")
 
 
+## New Test 01
+
+
+def test_includes_false():
+    linked_list = LinkedList()
+
+    linked_list.insert("apple")
+
+    linked_list.insert("banana")
+
+    linked_list.insert(1)
+
+    linked_list.insert(2)
+
+    assert str(linked_list) == "{ 2 } -> { 1 } -> { banana } -> { apple } -> NULL"
+
+
+## New Test 02
+
+
+def test_includes_boolean():
+    linked_list = LinkedList()
+
+    linked_list.insert("apple")
+    linked_list.insert("banana")
+    assert not linked_list.includes(False)
+
+
+## New Test 03
+
+def test_insert_array():
+    linked_list = LinkedList()
+    linked_list.insert([])
+    assert linked_list.head.value == []
