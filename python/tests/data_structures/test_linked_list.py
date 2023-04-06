@@ -109,3 +109,21 @@ def test_insert_array():
     linked_list = LinkedList()
     linked_list.insert([])
     assert linked_list.head.value == []
+
+
+def test_to_string_one():
+    linked_list = LinkedList()
+    linked_list.insert("None")
+    assert str(linked_list) == "{ None } -> NULL"
+
+
+def test_to_string_two():
+    linked_list = LinkedList()
+    linked_list.insert("Node(banana)")
+    assert str(linked_list) == "{ Node(banana) } -> NULL"
+
+
+def test_includes_false_two():
+    linked_list = LinkedList()
+    linked_list.insert("banana")
+    assert not linked_list.includes(None)
