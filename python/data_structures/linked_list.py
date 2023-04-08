@@ -1,6 +1,3 @@
-import self as self
-
-
 class Node:
     def __init__(self, value, next=None):
         self.value = value
@@ -14,6 +11,7 @@ class LinkedList:
 
     def __init__(self, head=None):
         self.head = head
+        pass
 
     def insert(self, value):
         old_head = self.head
@@ -21,63 +19,72 @@ class LinkedList:
         self.head.next = old_head
 
     def __str__(self):
-        if self.head is None:
-            return "NULL"
+        current_value = self.head
+        ll_list = []
+        while current_value is not None:
+            ll_list.append(str(current_value.value))
+            current_value = current_value.next
+        return " -> ".join(["{ " + value + " }" for value in ll_list] + ["NULL"])
 
-    def __str__(self):
-        present = self.head
-        new_val = []
-        while present is not None:
-            new_val.append(str(present.value))
-            present = present.next
-        return " -> ".join(["{ " + value + " }" for value in new_val] + ["NULL"])
+    def includes(self, value):
 
-    def append(self, value):
-        if self.head == None:
-            self.head = Node(value, None)
-        else:
-            last_node = self.head
-            while True:
-                if last_node.next == None:
-                    break
-                last_node = last_node.next
-            last_node.next = Node(value, None)
-
-    def insert_before(self, value, new_value):
-
-        node = Node(new_value)
-
-        if not self.head:
-            self.head = node
-        else:
-            current = self.head
-
-        while current.next:
-            if current.next.value == value:
-                node.next = current.next
-                current.next = node
-                break
-            else:
-                current = current.next
-
-    def insert_after(self, existing_value, new_value):
-        new_node = Node(new_value, next)
         current = self.head
 
-        if current == None:
-            return 'Not here'
-
         while current:
-            if current.value == existing_value:
+            if current.value == value:
+                return True
+            current = current.next
+        return False
+
+    def append(self, new_value):
+
+        current = self.head
+        new_node = Node(new_value)
+
+        if current is None:
+            self.head = new_node
+            return
+
+        while current.next:
+            current = current.next
+
+        current.next = new_node
+
+    def insert_before(self, target_value, new_value):
+        if self.head is None:
+            raise TargetError("invalid value: " + target_value)
+
+        if self.head.value == target_value:
+            self.insert(new_value)
+            return
+
+        current = self.head
+        while current.next is not None:
+            if current.next.value == target_value:
+                new_node = Node(new_value)
                 new_node.next = current.next
                 current.next = new_node
                 return
             current = current.next
-        return 'nope'
+
+        raise TargetError("invalid value: " + target_value)
+
+    def insert_after(self, target_value, new_value):
+        if self.head is None:
+            raise TargetError(target_value + " nonexistent")
+
+        current = self.head
+        while current is not None:
+            if current.value == target_value:
+                new_node = Node(new_value)
+                new_node.next = current.next
+                current.next = new_node
+                return
+            current = current.next
+
+        raise TargetError(target_value + " nonexistent")
 
 
-
-
-class TargetError:
+class TargetError(Exception):
     pass
 
