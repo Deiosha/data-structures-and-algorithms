@@ -84,7 +84,27 @@ class LinkedList:
 
         raise TargetError(target_value + " nonexistent")
 
+    def kth_from_end(self, k):
+        length = 0
+        current = self.head
+        counter = 0
+        while current:
+            length += 1
+            current = current.next
+        if k > length:
+            raise Exception
+        else:
+            counter = length - k
+        current = self.head
+        while counter - 1:
+            counter -= 1
+            current = current.next
+        return current.value
+#
+
+
 
 class TargetError(Exception):
     pass
+
 
