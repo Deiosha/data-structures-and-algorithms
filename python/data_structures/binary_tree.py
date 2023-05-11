@@ -11,7 +11,7 @@ class BinaryTree:
         values = []
 
         def traversing(root):
-            # Add value to list. 
+            # Add value to list.
 
             if root == None:
                 return
@@ -76,6 +76,39 @@ class BinaryTree:
         traversing(self.root)
 
         return values
+
+    def find_maximum_value(self):
+        """
+        Returns the maximum value in the binary tree.
+        """
+        if not self.root:
+            # returning None is no value is found
+            return None
+
+        def traverse(node):
+            # Base case
+            if not node:
+                return float()
+
+            # Recursive case
+            # reading if the max equals to node value
+            max_value = node.value
+            #  move down the left and right sides of the tree
+            left_max = traverse(node.left)
+            right_max = traverse(node.right)
+
+            # if the left max is more the max value
+            if left_max > max_value:
+                # max_value variable is updated to the new maximum value
+                max_value = left_max
+            # if the right max is more the max value
+            if right_max > max_value:
+                # max_value variable is updated to the new maximum value
+                max_value = right_max
+            # return the max value
+            return max_value
+        # function will traverse through binary tree, find the max value returned
+        return traverse(self.root)
 
 
 class Node:
