@@ -1,0 +1,10 @@
+ - [y] Top-level README “Table of Contents” is updated
+ - [y] README for this challenge is complete
+       - [y] Summary, Description, Approach & Efficiency, Solution
+       - [y] Picture of whiteboard
+       - [y] Link to code
+ - [y] Feature tasks for this challenge are completed
+ - [y ] Unit tests written and passing
+       - [ y] “Happy Path” - Expected outcome
+       - [ y] Expected failure
+       - [ y] Edge Case (if applicable/obvious)
