@@ -1,33 +1,43 @@
 class Hashtable:
-    def __init__(self, size=1024):
+    def __init__(self, size=100):
         self.size = size
-        self._buckets = [None] * self.size
+        self._buckets = [[] for _ in range(self.size)]
 
-    def _hash(self, key):
-        """Hashes the key and returns the index of the bucket."""
-        hash_value = 0
-        for char in key:
-            hash_value += ord(char)
-        return hash_value % self.size
 
     def set(self, key, value):
-        """Sets the value associated with the given key in the hashtable."""
         index = self._hash(key)
-        if self._buckets[index] is None:
-            self._buckets[index] = []
-        for item in self._buckets[index]:
-            if item[0] == key:
-                item[1] = value
+        bucket = self._buckets[index]
+        for i, (existing_key, _) in enumerate(bucket):
+            if existing_key == key:
+                bucket[i] = (key, value)
                 return
-        self._buckets[index].append([key, value])
+        bucket.append((key, value))
 
     def get(self, key):
-        """Returns the value associated with the given key from the hashtable."""
         index = self._hash(key)
-        if self._buckets[index] is None:
-            return None
-        for item in self._buckets[index]:
-            if item[0] == key:
-                return item[1]
+        bucket = self._buckets[index]
+        for existing_key, value in bucket:
+            if existing_key == key:
+                return value
         return None
 
+    def has(self, key):
+        index = self._hash(key)
+        bucket = self._buckets[index]
+        for existing_key, _ in bucket:
+            if existing_key == key:
+                return True
+        return False
+
+    def keys(self):
+        keys = []
+        for bucket in self._buckets:
+            for key, _ in bucket:
+                keys.append(key)
+        return keys
+
+    def _hash(self, key):
+        if isinstance(key, str):
+            return sum(ord(char) for char in key) % self.size
+        else:
+            return hash(key) % self.size
